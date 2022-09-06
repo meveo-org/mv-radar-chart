@@ -1,0 +1,6 @@
+{
+  "dependencies": {
+    "lit-element": "^3.2.2",
+    "lit-html": "^2.3.1"
+  }
+}
