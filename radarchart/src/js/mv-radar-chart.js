@@ -286,7 +286,7 @@ export class MvChart extends LitElement {
     height: 320px !important;
     width: 460px !important;
     left: -30px !important;
-    top: -20px !important;
+    top: -10px !important;
 }
 
 
