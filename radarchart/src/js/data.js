@@ -10,6 +10,7 @@ export const RADAR_CONFIG = {
       'Linux'
 
     ],
+    loader: [],
     links: [
       'http://google.com',
       'http://apple.com',

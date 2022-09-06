@@ -1,7 +1,6 @@
 import { LitElement, html, css } from "lit-element";
 import "mv-container";
-import "https://d3js.org/d3.v7.min.js";
-import "./bubblechart/src/js/mv-bubble-chart.js";
+import "./bubblechart/src/js/mv-radar-chart.js";
 
 export class MvChartBubbleDemo extends LitElement {
   static get properties() {

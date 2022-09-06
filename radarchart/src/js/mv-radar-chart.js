@@ -165,6 +165,7 @@ export class MvChart extends LitElement {
         text-decoration: none;
         display:block;
         text-align:center;
+        font-size:18px;
       }
 
       .labelindic a:hover{text-decoration:underline;text-shadow:2px 2px 2px #ccc;}
@@ -280,12 +281,12 @@ export class MvChart extends LitElement {
       .mv-chart {    position: relative;
     bottom: 190px;}
     .mv-chart-canvas {
-    display: block !important;
-    height: 340px !important;
-    width: 500px !important;
     position: relative;
-    left: -55px !important;
-    top: -19px !important;
+    display: block !important;
+    height: 320px !important;
+    width: 460px !important;
+    left: -30px !important;
+    top: -20px !important;
 }
 
 
@@ -332,7 +333,6 @@ export class MvChart extends LitElement {
 
   firstUpdated() {
     if (!this.chart) {
-      const { type, data, options } = this;
       const plugins = this.plugins || [];
       plugins.push(ChartDataLabels);
       const canvas = this
@@ -361,26 +361,39 @@ export class MvChart extends LitElement {
         .datasets[0]
         .data[i];
 
+
+
+      RADAR_CONFIG.data.loader[i] = RADAR_CONFIG.data.labels[i];
+      RADAR_CONFIG.data.labels[i] = '';
+
+
+
       if (RADAR_CONFIG.data.links[i] != '') {
+
+
+
+
+
+
         loop[i] = html`
     <div class="label${i + 1} labelindic pos-${i + 1}-${max}">
       <a href="${RADAR_CONFIG
                 .data
                 .links[i]}" target="_blank">
-        <!--<span>${RADAR_CONFIG
+        <span>${RADAR_CONFIG
                 .data
-                .labels[i]}</span><br/>-->${this
-  .valeur[i]} hits</a>
+                .loader[i]}</span><br/>${this
+                    .valeur[i]} hits</a>
     </div>`;
       } else {
 
         loop[i] = html`
     <div class="label${i + 1} labelindic pos-${i + 1}-${max} nolink">
       <a>
-        <!--<span>${RADAR_CONFIG
+        <span>${RADAR_CONFIG
                 .data
-                .labels[i]}</span><br/>-->${this
-  .valeur[i]} hits</a>
+                .loader[i]}</span><br/>${this
+                    .valeur[i]} hits</a>
     </div>`;
 
       }
