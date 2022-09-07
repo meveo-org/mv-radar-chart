@@ -8,6 +8,7 @@ export const RADAR_CONFIG = {
       'Microsoft',
       'Huawai',
       'Sony',
+      'Asus',
       'Linux'
 
     ],
@@ -18,10 +19,11 @@ export const RADAR_CONFIG = {
       '',
       'http://facebook.com',
       'http://instagram.com',
+      'http://asus.com',
       'http://lemonde.fr'
     ],
     datasets: [{
-      data: [Math.floor(Math.random() * 100), Math.floor(Math.random() * 100), Math.floor(Math.random() * 100), Math.floor(Math.random() * 100), Math.floor(Math.random() * 100), Math.floor(Math.random() * 100)],
+      data: [Math.floor(Math.random() * 100), Math.floor(Math.random() * 100), Math.floor(Math.random() * 100), Math.floor(Math.random() * 100), Math.floor(Math.random() * 100), Math.floor(Math.random() * 100), Math.floor(Math.random() * 100)],
       fill: true,
       backgroundColor: 'rgba(255, 99, 132, 0)',
       borderColor: '#FF1A44',

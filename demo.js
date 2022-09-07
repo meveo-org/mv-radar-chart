@@ -1,6 +1,7 @@
-import { LitElement, html, css } from "lit-element";
-import "mv-container";
-import "./bubblechart/src/js/mv-radar-chart.js";
+import { LitElement, html, css } from "lit";
+//import "mv-container";
+import "./radarchart/src/js/mv-radar-chart.js";
+import { RADAR_CONFIG } from "./radarchart/src/js/data.js";
 
 export class MvChartBubbleDemo extends LitElement {
   static get properties() {
@@ -89,7 +90,7 @@ export class MvChartBubbleDemo extends LitElement {
       </fieldset>
       
       <mv-container class="main-container" .theme="${this.theme}">
-        <mv-chart-radar></mv-chart-radar>
+        <mv-chart-radar .data="${RADAR_CONFIG}"></mv-chart-radar>
       </mv-container>
     `;
   }

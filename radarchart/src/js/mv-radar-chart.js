@@ -1,30 +1,18 @@
-import { LitElement, html, css } from "https://cdn.jsdelivr.net/gh/meveo-org/mv-dependencies@master/lit-element.js";
+import { LitElement, html, css } from "lit";
 import "../lib/chart.min.js";
 import "../lib/chartjs-plugin-datalabels.min.js";
-import { RADAR_CONFIG } from "./data.js";
+
 
 export class MvChart extends LitElement {
   static get properties() {
     return {
-      type: {
-        type: String,
-        attribute: true
-      },
+
       data: {
         type: Object,
         attribute: false,
         reflect: true
       },
-      options: {
-        type: Object,
-        attribute: false,
-        reflect: true
-      },
-      plugins: {
-        type: Object,
-        attribute: false,
-        reflect: true
-      },
+    
 
       //  valid theme values are: "light", "dark"    default: "light"
       theme: {
@@ -278,14 +266,57 @@ export class MvChart extends LitElement {
         margin-left: -165px;
         text-align: right;
       }
+
+
+
+
+
+
+      .pos-1-7 {
+        margin-left: -21px;
+        margin-top:65px;
+      }
+      .pos-2-7 {
+        margin-left: 120px;
+        margin-top: 135px;
+      }
+      .pos-3-7 {
+    margin-top: 270px;
+    margin-left: 145px;
+}
+.pos-4-7 {
+    margin-top: 383px;
+    margin-left: 50px;
+}
+.pos-5-7 {
+    margin-top: 383px;
+    margin-left: -95px;
+    text-align: right;
+}
+.pos-6-7 {
+    margin-top: 268px;
+    margin-left: -198px;
+    text-align: right;
+}
+
+.pos-7-7 {
+    margin-top: 130px;
+    margin-left: -170px;
+    text-align: right;
+}
+
+
+
+
+
       .mv-chart {    position: relative;
     bottom: 190px;}
     .mv-chart-canvas {
     position: relative;
     display: block !important;
-    height: 320px !important;
-    width: 460px !important;
-    left: -30px !important;
+    height: 300px !important;
+    width: 440px !important;
+    left: -20px !important;
     top: -10px !important;
 }
 
@@ -298,21 +329,18 @@ export class MvChart extends LitElement {
     this.theme = "light";
     this.chart = null;
     this.valeur = null;
+    this.data;
+
   }
 
-  static get properties() {
-    return {
-      valeur: {
-        type: Array
-      }
-    };
-  }
+
 
   render() {
     return html`
 
 <div style="transform: scale(1);">
-  ${this.displayRadarHits()}
+
+  ${this.displayRadarHits()} 
 
   <div class="circle1" style="position:relative;">
     <div class="circle2">
@@ -332,16 +360,23 @@ export class MvChart extends LitElement {
   }
 
   firstUpdated() {
+
+
+    
     if (!this.chart) {
+   
+
+
+      const { data } = this;
       const plugins = this.plugins || [];
       plugins.push(ChartDataLabels);
       const canvas = this
         .shadowRoot
         .querySelector(".mv-chart-canvas")
         .getContext("2d");
-      this.chart = new Chart(canvas, RADAR_CONFIG);
+      this.chart = new Chart(canvas,  data );
 
-      console.log(data);
+
 
 
 
@@ -349,26 +384,29 @@ export class MvChart extends LitElement {
   }
 
   displayRadarHits() {
+
+
+
+    
     let i;
     let loop = new Array();
     this.valeur = new Array();
-
-    let max = RADAR_CONFIG.data.labels.length;
+    let max = this.data.data.labels.length;
     for (i = 0; i < max; i++) {
 
-      this.valeur[i] = RADAR_CONFIG
-        .data
+      this.valeur[i] = this
+        .data.data
         .datasets[0]
         .data[i];
 
 
 
-      RADAR_CONFIG.data.loader[i] = RADAR_CONFIG.data.labels[i];
-      RADAR_CONFIG.data.labels[i] = '';
+      this.data.data.loader[i] = this.data.data.labels[i];
+      this.data.data.labels[i] = '';
 
 
 
-      if (RADAR_CONFIG.data.links[i] != '') {
+      if (this.data.data.links[i] != '') {
 
 
 
@@ -377,25 +415,23 @@ export class MvChart extends LitElement {
 
         loop[i] = html`
     <div class="label${i + 1} labelindic pos-${i + 1}-${max}">
-      <a href="${RADAR_CONFIG
-                .data
+      <a href="${this
+                .data.data
                 .links[i]}" target="_blank">
-        <span>${RADAR_CONFIG
-                .data
+        <span>${this
+                .data.data
                 .loader[i]}</span><br/>${this
-                    .valeur[i]} ${RADAR_CONFIG
-                .label}</a>
+                    .valeur[i]} ${this.data.label}</a>
     </div>`;
       } else {
 
         loop[i] = html`
     <div class="label${i + 1} labelindic pos-${i + 1}-${max} nolink">
       <a>
-        <span>${RADAR_CONFIG
-                .data
+        <span>${this
+                .data.data
                 .loader[i]}</span><br/>${this
-                    .valeur[i]} ${RADAR_CONFIG
-                .label}</a>
+                    .valeur[i]} ${this.data.label}</a>
     </div>`;
 
       }
