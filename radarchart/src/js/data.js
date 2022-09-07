@@ -1,5 +1,6 @@
 export const RADAR_CONFIG = {
   type: 'radar',
+  label: 'hits',
   data: {
     labels: [
       'Android',

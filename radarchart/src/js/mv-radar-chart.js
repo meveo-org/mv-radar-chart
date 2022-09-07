@@ -383,7 +383,8 @@ export class MvChart extends LitElement {
         <span>${RADAR_CONFIG
                 .data
                 .loader[i]}</span><br/>${this
-                    .valeur[i]} hits</a>
+                    .valeur[i]} ${RADAR_CONFIG
+                .label}</a>
     </div>`;
       } else {
 
@@ -393,7 +394,8 @@ export class MvChart extends LitElement {
         <span>${RADAR_CONFIG
                 .data
                 .loader[i]}</span><br/>${this
-                    .valeur[i]} hits</a>
+                    .valeur[i]} ${RADAR_CONFIG
+                .label}</a>
     </div>`;
 
       }
