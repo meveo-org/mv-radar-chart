@@ -152,7 +152,7 @@ export class MvChart extends LitElement {
         color: #000;
         text-decoration: none;
         display:block;
-        text-align:center;
+
         font-size:18px;
       }
 
@@ -173,10 +173,12 @@ export class MvChart extends LitElement {
       .pos-1-2{
         margin-left: -21px;
         margin-top:65px;
+        text-align:center;
       }
       .pos-2-2{
          margin-top: 390px;
         margin-left: -22px;
+        text-align:center;
       }
 
 
@@ -184,14 +186,17 @@ export class MvChart extends LitElement {
       .pos-1-3 {
         margin-left: -21px;
         margin-top:65px;
+        text-align:center;
       }
       .pos-2-3{
-        margin-top: 300px;
-        margin-left: 115px;
+        margin-top: 310px;
+        margin-left: 135px;
+        text-align :  left;
       }
       .pos-3-3{
-        margin-left: -170px;
-        top: 295px;
+        margin-left: -200px;
+        top: 310px;
+        text-align:right;
       }
 
 
@@ -201,16 +206,17 @@ export class MvChart extends LitElement {
         margin-top:65px;
       }
       .pos-2-4 {
-        margin-top: 250px;
-        margin-left: 135px;
+        margin-top: 225px;
+        margin-left: 150px;
       }
       .pos-3-4 {
         margin-top: 390px;
         margin-left: -22px;
+        text-align:center;
       }
       .pos-4-4 {
-        margin-top: 250px;
-        margin-left: -185px;
+        margin-top: 225px;
+        margin-left: -205px;
         text-align: right;
       }
 
@@ -218,10 +224,12 @@ export class MvChart extends LitElement {
       .pos-1-5 {
         margin-left: -21px;
         margin-top:65px;
+        text-align:center;
       }
-      .pos-2-5{
-        margin-left: 130px;
-        margin-top:165px;
+      .pos-2-5 {
+          margin-left: 150px;
+          margin-top: 175px;
+          text-align:left;
       }
       .pos-3-5{
         margin-top: 380px;
@@ -231,30 +239,34 @@ export class MvChart extends LitElement {
       .pos-4-5{
         margin-left: -133px;
         margin-top: 380px;
-        text-align: left;
+        text-align: right;
       }
       .pos-5-5{
         margin-top: 165px;
-        margin-left: -185px;
-        text-align: left;
+        margin-left: -190px;
+        text-align: right;
       }
 
 
       .pos-1-6 {
         margin-left: -21px;
         margin-top:65px;
+        text-align:center;
       }
       .pos-2-6 {
         margin-left: 120px;
         margin-top: 135px;
+        text-align:left;
       }
       .pos-3-6 {
         margin-top: 322px;
         margin-left: 117px;
+        text-align:left;
       }
       .pos-4-6 {
         margin-top: 390px;
         margin-left: -22px;
+        text-align:center;
       }
       .pos-5-6 {
         margin-top: 320px;
@@ -275,18 +287,22 @@ export class MvChart extends LitElement {
       .pos-1-7 {
         margin-left: -21px;
         margin-top:65px;
+        text-align:center;
       }
       .pos-2-7 {
         margin-left: 120px;
         margin-top: 135px;
+        text-align:left;
       }
       .pos-3-7 {
     margin-top: 270px;
     margin-left: 145px;
+    text-align:left;
 }
 .pos-4-7 {
     margin-top: 383px;
     margin-left: 50px;
+    text-align:left;
 }
 .pos-5-7 {
     margin-top: 383px;
@@ -308,13 +324,56 @@ export class MvChart extends LitElement {
 
 
 
+.pos-1-8 {
+        margin-left: -21px;
+        margin-top:65px;
+        text-align:center;
+      }
+      .pos-2-8 {
+    margin-left: 100px;
+    margin-top: 105px;
+    text-align:left;
+}
+      .pos-3-8 {
+    margin-top: 220px;
+    margin-left: 145px;
+    text-align:left;
+}
+.pos-4-8 {
+    margin-top: 334px;
+    margin-left: 107px;
+    text-align:left;
+}
+.pos-5-8 {
+    margin-top: 386px;
+    margin-left: -28px;
+    text-align: center;
+}
+.pos-6-8 {
+    margin-top: 340px;
+    margin-left: -150px;
+    text-align: right;
+}
+
+.pos-7-8 {
+    margin-top: 215px;
+    margin-left: -202px;
+    text-align: right;
+}
+.pos-8-8 {
+    margin-top: 105px;
+    margin-left: -161px;
+    text-align: right;
+}
+
+
 
       .mv-chart {    position: relative;
     bottom: 190px;}
     .mv-chart-canvas {
     position: relative;
     display: block !important;
-    height: 300px !important;
+    height: 318px !important;
     width: 440px !important;
     left: -20px !important;
     top: -10px !important;

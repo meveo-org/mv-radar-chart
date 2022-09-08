@@ -9,7 +9,8 @@ export const RADAR_CONFIG = {
       'Huawai',
       'Sony',
       'Asus',
-      'Linux'
+      'Linux',
+      'webdrone'
 
     ],
     loader: [],
@@ -20,10 +21,11 @@ export const RADAR_CONFIG = {
       'http://facebook.com',
       'http://instagram.com',
       'http://asus.com',
+      'http://asus.com',
       'http://lemonde.fr'
     ],
     datasets: [{
-      data: [Math.floor(Math.random() * 100), Math.floor(Math.random() * 100), Math.floor(Math.random() * 100), Math.floor(Math.random() * 100), Math.floor(Math.random() * 100), Math.floor(Math.random() * 100), Math.floor(Math.random() * 100)],
+      data: [Math.floor(Math.random() * 100), Math.floor(Math.random() * 100), Math.floor(Math.random() * 100), Math.floor(Math.random() * 100), Math.floor(Math.random() * 100), Math.floor(Math.random() * 100), Math.floor(Math.random() * 100), Math.floor(Math.random() * 100)],
       fill: true,
       backgroundColor: 'rgba(255, 99, 132, 0)',
       borderColor: '#FF1A44',
