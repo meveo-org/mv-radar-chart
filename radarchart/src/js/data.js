@@ -10,7 +10,7 @@ export const RADAR_CONFIG = {
       'Sony',
       'Asus',
       'Linux',
-      'webdrone'
+      'Android'
 
     ],
     loader: [],

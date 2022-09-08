@@ -143,228 +143,37 @@ export class MvChart extends LitElement {
       }
 
       .labelindic {
-        position: absolute;
-        left: 50%;
-        z-index: 9999;
-      }
-      .labelindic span{text-transform:uppercase;font-size: 11px;}
-      .labelindic a {
-        color: #000;
-        text-decoration: none;
-        display:block;
+  position: absolute;
+    left: 50%;
+    z-index: 9999;
+    width: 100px;
+    margin-left: -50px;
+    text-align: center;
+    top: 225px;
 
-        font-size:18px;
+
+
+      .labelindic span{text-transform:uppercase;font-size: 11px;position:relative;display:block;line-height:9px;}
+
+      .labelindic span  span {font-size:14px;}
+
+    /*  .labelindic:nth-child(2n) span{transform:180deg;}*/
+
+        .labelindic a {
+    color: rgb(0, 0, 0);
+    text-decoration: none;
+    display: block;
+    transform-origin: 250px center;
+    transform: rotate(90deg);
+    position: relative;
+    font-size: 18px;
+    right: 200px;
+
       }
 
       .labelindic a:hover{text-decoration:underline;text-shadow:2px 2px 2px #ccc;}
       .nolink a:hover{text-decoration:none;cursor:default;}
 
-
-
-
-
-      .pos-1-1 {
-        margin-left: -21px;
-        margin-top:65px;
-      }
-
-
-
-      .pos-1-2{
-        margin-left: -21px;
-        margin-top:65px;
-        text-align:center;
-      }
-      .pos-2-2{
-         margin-top: 390px;
-        margin-left: -22px;
-        text-align:center;
-      }
-
-
-
-      .pos-1-3 {
-        margin-left: -21px;
-        margin-top:65px;
-        text-align:center;
-      }
-      .pos-2-3{
-        margin-top: 310px;
-        margin-left: 135px;
-        text-align :  left;
-      }
-      .pos-3-3{
-        margin-left: -200px;
-        top: 310px;
-        text-align:right;
-      }
-
-
-
-      .pos-1-4 {
-        margin-left: -21px;
-        margin-top:65px;
-      }
-      .pos-2-4 {
-        margin-top: 225px;
-        margin-left: 150px;
-      }
-      .pos-3-4 {
-        margin-top: 390px;
-        margin-left: -22px;
-        text-align:center;
-      }
-      .pos-4-4 {
-        margin-top: 225px;
-        margin-left: -205px;
-        text-align: right;
-      }
-
-
-      .pos-1-5 {
-        margin-left: -21px;
-        margin-top:65px;
-        text-align:center;
-      }
-      .pos-2-5 {
-          margin-left: 150px;
-          margin-top: 175px;
-          text-align:left;
-      }
-      .pos-3-5{
-        margin-top: 380px;
-        margin-left: 84px;
-        text-align: left;
-      }
-      .pos-4-5{
-        margin-left: -133px;
-        margin-top: 380px;
-        text-align: right;
-      }
-      .pos-5-5{
-        margin-top: 165px;
-        margin-left: -190px;
-        text-align: right;
-      }
-
-
-      .pos-1-6 {
-        margin-left: -21px;
-        margin-top:65px;
-        text-align:center;
-      }
-      .pos-2-6 {
-        margin-left: 120px;
-        margin-top: 135px;
-        text-align:left;
-      }
-      .pos-3-6 {
-        margin-top: 322px;
-        margin-left: 117px;
-        text-align:left;
-      }
-      .pos-4-6 {
-        margin-top: 390px;
-        margin-left: -22px;
-        text-align:center;
-      }
-      .pos-5-6 {
-        margin-top: 320px;
-        margin-left: -167px;
-        text-align: right;
-      }
-      .pos-6-6 {
-        margin-top: 132px;
-        margin-left: -165px;
-        text-align: right;
-      }
-
-
-
-
-
-
-      .pos-1-7 {
-        margin-left: -21px;
-        margin-top:65px;
-        text-align:center;
-      }
-      .pos-2-7 {
-        margin-left: 120px;
-        margin-top: 135px;
-        text-align:left;
-      }
-      .pos-3-7 {
-    margin-top: 270px;
-    margin-left: 145px;
-    text-align:left;
-}
-.pos-4-7 {
-    margin-top: 383px;
-    margin-left: 50px;
-    text-align:left;
-}
-.pos-5-7 {
-    margin-top: 383px;
-    margin-left: -95px;
-    text-align: right;
-}
-.pos-6-7 {
-    margin-top: 268px;
-    margin-left: -198px;
-    text-align: right;
-}
-
-.pos-7-7 {
-    margin-top: 130px;
-    margin-left: -170px;
-    text-align: right;
-}
-
-
-
-
-.pos-1-8 {
-        margin-left: -21px;
-        margin-top:65px;
-        text-align:center;
-      }
-      .pos-2-8 {
-    margin-left: 100px;
-    margin-top: 105px;
-    text-align:left;
-}
-      .pos-3-8 {
-    margin-top: 220px;
-    margin-left: 145px;
-    text-align:left;
-}
-.pos-4-8 {
-    margin-top: 334px;
-    margin-left: 107px;
-    text-align:left;
-}
-.pos-5-8 {
-    margin-top: 386px;
-    margin-left: -28px;
-    text-align: center;
-}
-.pos-6-8 {
-    margin-top: 340px;
-    margin-left: -150px;
-    text-align: right;
-}
-
-.pos-7-8 {
-    margin-top: 215px;
-    margin-left: -202px;
-    text-align: right;
-}
-.pos-8-8 {
-    margin-top: 105px;
-    margin-left: -161px;
-    text-align: right;
-}
 
 
 
@@ -436,21 +245,21 @@ export class MvChart extends LitElement {
       this.chart = new Chart(canvas,  data );
 
 
-
-
-
     }
   }
 
   displayRadarHits() {
-
-
-
-    
+  
     let i;
     let loop = new Array();
     this.valeur = new Array();
     let max = this.data.data.labels.length;
+
+    let positionDeg =new Array();
+    let ratio = 360/max;
+    let pos = new Array();
+
+
     for (i = 0; i < max; i++) {
 
       this.valeur[i] = this
@@ -463,34 +272,40 @@ export class MvChart extends LitElement {
       this.data.data.loader[i] = this.data.data.labels[i];
       this.data.data.labels[i] = '';
 
+      positionDeg[i] = ratio*i; 
 
+
+      if(i%2 == 0)
+{
+  pos[i] =  positionDeg[i]-90+90*positionDeg[i]+360;
+}
+else
+{
+  pos[i] =  positionDeg[i]-90+90*positionDeg[i]+180;
+}
 
       if (this.data.data.links[i] != '') {
 
 
-
-
-
-
         loop[i] = html`
-    <div class="label${i + 1} labelindic pos-${i + 1}-${max}">
+    <div class="label${i + 1} labelindic pos-${i + 1}-${max}" style="transform: rotate(${positionDeg[i]}deg);">
       <a href="${this
                 .data.data
                 .links[i]}" target="_blank">
-        <span>${this
+        <span  style="transform: rotate(${pos[i]}deg);"><span>${this
                 .data.data
                 .loader[i]}</span><br/>${this
-                    .valeur[i]} ${this.data.label}</a>
+                    .valeur[i]} ${this.data.label}</span></a>
     </div>`;
       } else {
 
         loop[i] = html`
-    <div class="label${i + 1} labelindic pos-${i + 1}-${max} nolink">
+    <div class="label${i + 1} labelindic pos-${i + 1}-${max} nolink"  style="transform: rotate(${positionDeg[i]}deg);">
       <a>
-        <span>${this
+        <span  style="transform: rotate(${pos[i]}deg);"><span>${this
                 .data.data
                 .loader[i]}</span><br/>${this
-                    .valeur[i]} ${this.data.label}</a>
+                    .valeur[i]} ${this.data.label}</span></a>
     </div>`;
 
       }
