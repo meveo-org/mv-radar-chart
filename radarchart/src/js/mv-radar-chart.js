@@ -1,4 +1,4 @@
-import { LitElement, html, css } from "https://cdn.jsdelivr.net/gh/meveo-org/mv-dependencies@master/lit-element.js";
+import { LitElement, html, css } from "lit";
 import "../lib/chart.min.js";
 import "../lib/chartjs-plugin-datalabels.min.js";
 
@@ -172,7 +172,7 @@ export class MvChart extends LitElement {
 
       }
 
-      .labelindic a:hover{text-decoration:underline;text-shadow:2px 2px 2px #ccc;}
+      .labelindic a:hover{text-decoration:underline;}
       .nolink a:hover{text-decoration:none;cursor:default;}
 
 
