@@ -115,7 +115,7 @@ export class MvChart extends LitElement {
         height: 280px;
         margin: auto;
         background-color: #fff;
-        box-shadow: #333 0px 0px 10px;
+        box-shadow: #AAA 0px 0px 30px;
         border-radius: 50%;
         position: relative !important;
         margin: auto;
@@ -154,9 +154,9 @@ export class MvChart extends LitElement {
 
 
 
-      .labelindic span{text-transform:uppercase;font-size: 11px;position:relative;display:block;line-height:9px;}
+      .labelindic span{text-transform:uppercase;font-size: 18px;position:relative;display:block;line-height:9px;}
 
-      .labelindic span  span {font-size:14px;}
+      .labelindic span  span {font-size:11px;text-transform:capitalize;}
 
     /*  .labelindic:nth-child(2n) span{transform:180deg;}*/
 
@@ -169,10 +169,15 @@ export class MvChart extends LitElement {
     position: relative;
     font-size: 18px;
     right: 200px;
-
       }
 
-      .labelindic a:hover{text-decoration:underline;}
+      .labelindic a:hover{}
+
+      .labelindic a:hover img{display:block !important;position:absolute;left:80px;bottom:10px;}
+
+
+
+
       .nolink a:hover{text-decoration:none;cursor:default;}
 
 
@@ -319,7 +324,7 @@ export class MvChart extends LitElement {
     <div class="label${i + 1} labelindic pos-${i + 1}-${max}" style="transform: rotate(${positionDeg[i]}deg);">
 
       <a href="${this.data.data.links[i]}" target="_blank">
-        <span style="transform:rotate(${pos[i]}deg);"><span>${this.data.data.loader[i]}</span ><br/>${this.valeur[i]} ${this.data.label}</span></a>
+        <span style="transform:rotate(${pos[i]}deg);"><img src="./radarchart/src/img/fiche-radar.svg" style="display:none;"/><span>${this.data.data.loader[i]}</span ><br/>${this.valeur[i]} ${this.data.label}</span></a>
 
     </div>`;
       } else {
