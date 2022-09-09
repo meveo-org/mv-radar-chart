@@ -1,4 +1,4 @@
-import { LitElement, html, css } from "lit";
+import { LitElement, html, css } from "https://cdn.jsdelivr.net/gh/meveo-org/mv-dependencies@master/lit-element.js";
 import "../lib/chart.min.js";
 import "../lib/chartjs-plugin-datalabels.min.js";
 
@@ -142,14 +142,15 @@ export class MvChart extends LitElement {
         top: 35px;
       }
 
-      .labelindic {
-  position: absolute;
+  .labelindic {
+    position: absolute;
     left: 50%;
     z-index: 9999;
     width: 100px;
     margin-left: -50px;
     text-align: center;
     top: 225px;
+  }
 
 
 
@@ -186,6 +187,17 @@ export class MvChart extends LitElement {
     width: 440px !important;
     left: -20px !important;
     top: -10px !important;
+
+
+    .rotate-centered {
+    top: 50%;
+    right: 50%;
+    position: absolute;
+    transform: scale(-1) translate(-50%, 50%);
+    writing-mode: vertical-lr;
+ }
+
+ 
 }
 
 
@@ -262,10 +274,7 @@ export class MvChart extends LitElement {
 
     for (i = 0; i < max; i++) {
 
-      this.valeur[i] = this
-        .data.data
-        .datasets[0]
-        .data[i];
+      this.valeur[i] = this.data.data.datasets[0].data[i];
 
 
 
@@ -275,37 +284,50 @@ export class MvChart extends LitElement {
       positionDeg[i] = ratio*i; 
 
 
-      if(i%2 == 0)
-{
-  pos[i] =  positionDeg[i]-90+90*positionDeg[i]+360;
-}
-else
-{
-  pos[i] =  positionDeg[i]-90+90*positionDeg[i]+180;
-}
+      pos[i] = -90 * (i+1) - positionDeg[i] -90*(i+1) -90;
+
+   if(i%2 == 0)
+           {
+           pos[i] =  pos[i]+180;
+  
+            }
+               else
+                {
+     
+                 
+     
+          
+                 }
+
+
+    
+
+  
+
+
+
+
+
+
+
+
 
       if (this.data.data.links[i] != '') {
 
 
         loop[i] = html`
     <div class="label${i + 1} labelindic pos-${i + 1}-${max}" style="transform: rotate(${positionDeg[i]}deg);">
-      <a href="${this
-                .data.data
-                .links[i]}" target="_blank">
-        <span  style="transform: rotate(${pos[i]}deg);"><span>${this
-                .data.data
-                .loader[i]}</span><br/>${this
-                    .valeur[i]} ${this.data.label}</span></a>
+
+      <a href="${this.data.data.links[i]}" target="_blank">
+        <span style="transform:rotate(${pos[i]}deg);"><span>${this.data.data.loader[i]}</span ><br/>${this.valeur[i]} ${this.data.label}</span></a>
+
     </div>`;
       } else {
 
         loop[i] = html`
     <div class="label${i + 1} labelindic pos-${i + 1}-${max} nolink"  style="transform: rotate(${positionDeg[i]}deg);">
-      <a>
-        <span  style="transform: rotate(${pos[i]}deg);"><span>${this
-                .data.data
-                .loader[i]}</span><br/>${this
-                    .valeur[i]} ${this.data.label}</span></a>
+      <a >
+        <span  style="transform:rotate(${pos[i]}deg);" ><span>${this.data.data.loader[i]}</span><br/>${this.valeur[i]} ${this.data.label}</span></a>
     </div>`;
 
       }

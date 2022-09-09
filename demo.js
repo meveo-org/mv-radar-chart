@@ -1,4 +1,4 @@
-import { LitElement, html, css } from "lit";
+import { LitElement, html, css } from "https://cdn.jsdelivr.net/gh/meveo-org/mv-dependencies@master/lit-element.js";
 //import "mv-container";
 import "./radarchart/src/js/mv-radar-chart.js";
 import { RADAR_CONFIG } from "./radarchart/src/js/data.js";

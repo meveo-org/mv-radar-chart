@@ -8,9 +8,9 @@ export const RADAR_CONFIG = {
       'Microsoft',
       'Huawai',
       'Sony',
-      'Asus',
-      'Linux',
-      'Android'
+      'Huawai',
+
+
 
     ],
     loader: [],
@@ -25,7 +25,7 @@ export const RADAR_CONFIG = {
       'http://lemonde.fr'
     ],
     datasets: [{
-      data: [Math.floor(Math.random() * 100), Math.floor(Math.random() * 100), Math.floor(Math.random() * 100), Math.floor(Math.random() * 100), Math.floor(Math.random() * 100), Math.floor(Math.random() * 100), Math.floor(Math.random() * 100), Math.floor(Math.random() * 100)],
+      data: [Math.floor(Math.random() * 100), Math.floor(Math.random() * 100), Math.floor(Math.random() * 100), Math.floor(Math.random() * 100), Math.floor(Math.random() * 100)],
       fill: true,
       backgroundColor: 'rgba(255, 99, 132, 0)',
       borderColor: '#FF1A44',
