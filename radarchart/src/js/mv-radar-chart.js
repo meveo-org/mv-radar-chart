@@ -171,9 +171,9 @@ export class MvChart extends LitElement {
     right: 200px;
       }
 
-      .labelindic a:hover{}
+     
 
-      .labelindic a:hover img{display:block !important;position:absolute;left:80px;bottom:10px;}
+      .labelindic a:hover img{display:block !important;position:absolute;left:80px;bottom:10px;transform:scale(0.7);}
 
 
 
@@ -186,24 +186,19 @@ export class MvChart extends LitElement {
       .mv-chart {    position: relative;
     bottom: 190px;}
     .mv-chart-canvas {
-    position: relative;
+      position: relative;
     display: block !important;
-    height: 318px !important;
+    height: 300px !important;
     width: 440px !important;
     left: -20px !important;
-    top: -10px !important;
+    top: 0px !important;
+}
 
 
-    .rotate-centered {
-    top: 50%;
-    right: 50%;
-    position: absolute;
-    transform: scale(-1) translate(-50%, 50%);
-    writing-mode: vertical-lr;
- }
+
 
  
-}
+
 
 
     `;
@@ -282,9 +277,15 @@ export class MvChart extends LitElement {
       this.valeur[i] = this.data.data.datasets[0].data[i];
 
 
-
+if (this.data.data.labels[i] != ''){
       this.data.data.loader[i] = this.data.data.labels[i];
-      this.data.data.labels[i] = '';
+
+      
+    }
+else{this.data.data.labels[i] = this.data.data.loader[i] }
+
+this.data.data.labels[i] = '';
+
 
       positionDeg[i] = ratio*i; 
 
@@ -299,21 +300,10 @@ export class MvChart extends LitElement {
                else
                 {
      
-                 
+                 null;
      
           
                  }
-
-
-    
-
-  
-
-
-
-
-
-
 
 
 

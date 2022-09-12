@@ -9,9 +9,6 @@ export const RADAR_CONFIG = {
       'Huawai',
       'Sony',
       'Huawai'
-
-
-
     ],
     loader: [],
     links: [
