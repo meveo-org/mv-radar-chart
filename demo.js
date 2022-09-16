@@ -1,4 +1,4 @@
-import { LitElement, html, css } from "lit";
+import { LitElement, html, css } from "https://cdn.jsdelivr.net/gh/meveo-org/mv-dependencies@master/lit-element.js";
 //import "mv-container";
 import "./radarchart/src/js/mv-radar-chart.js";
 import { RADAR_CONFIG } from "./radarchart/src/js/data.js";
@@ -65,6 +65,18 @@ export class MvChartBubbleDemo extends LitElement {
         grid-template-rows: 290px 290px;
         grid-gap: 0;
       }
+
+      textarea {
+        position: fixed;
+        display: block;
+        left: 0px;
+        top: 10%;
+        min-height: 80% !important;
+        min-width: 200px !important;
+        box-shadow: 10px 10px 10px #ccc;
+        border-radius: 0px 20px 20px 0px;
+        padding: 50px 20px;
+      }
     `;
   }
 
@@ -92,6 +104,19 @@ export class MvChartBubbleDemo extends LitElement {
       <mv-container class="main-container" .theme="${this.theme}">
         <mv-chart-radar .data="${RADAR_CONFIG}"></mv-chart-radar>
       </mv-container>
+
+
+
+
+      <textarea
+        id="data-donut"
+        @change="${this.getNewVal}"
+      >
+
+      ${JSON.stringify(RADAR_CONFIG.data)}
+      
+  </textarea>
+
     `;
   }
 
@@ -100,7 +125,43 @@ export class MvChartBubbleDemo extends LitElement {
       target: { value },
     } = originalEvent;
     this.theme = value;
-  };
+  }
+
+  
+  getNewVal() {
+    let start = '{ "type": "radar","label": "hits","data":'
+
+    let newVal = this.shadowRoot.querySelector('textarea').value
+
+    let end =',"options":{"legend":{"display":false,"title":false,"labels":{"usePointStyle":false},"datalabels":{"display":false}},"tooltips":{"enabled":false},"gridLines":{"display":false},"scale":{"y":{"ticks":{"color":"red"}},"ticks":{"maxTicksLimit":1,"display":false,"drawTicks":false},"gridLines":{"drawOnChartArea":false,"display":false},"pointLabel":{"display":false}},"plugins":{"datalabels":{"display":false}},"elements":{"line":{"borderWidth":3}}}}'
+
+    newVal = start + newVal + end
+
+   
+
+    newVal = JSON.parse(newVal)
+
+    console.log(newVal)
+
+    /* TODO Uncaught SyntaxError: Expected double-quoted property name in JSON at position 41 */
+
+    this.shadowRoot.querySelector('mv-chart-radar').data = newVal
+
+    this.shadowRoot.querySelector('mv-chart-radar').displayRadarHits()
+    this.shadowRoot.querySelector('mv-chart-radar').displayChart()
+  
+
+
+
+
+
+  }
+
 }
+
+
+
+
+
 
 customElements.define("mv-chart-bubble-demo", MvChartBubbleDemo);

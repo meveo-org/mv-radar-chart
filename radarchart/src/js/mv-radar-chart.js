@@ -1,25 +1,22 @@
-import { LitElement, html, css } from "lit";
-import "../lib/chart.min.js";
-import "../lib/chartjs-plugin-datalabels.min.js";
-
+import { LitElement, html, css } from 'https://cdn.jsdelivr.net/gh/meveo-org/mv-dependencies@master/lit-element.js'
+import '../lib/chart.min.js'
+import '../lib/chartjs-plugin-datalabels.min.js'
 
 export class MvChart extends LitElement {
   static get properties() {
     return {
-
       data: {
         type: Object,
         attribute: false,
-        reflect: true
+        reflect: true,
       },
-    
 
       //  valid theme values are: "light", "dark"    default: "light"
       theme: {
         type: String,
-        attribute: true
-      }
-    };
+        attribute: true,
+      },
+    }
   }
 
   static get styles() {
@@ -106,30 +103,27 @@ export class MvChart extends LitElement {
         top: 0;
       }
 
-
-
-      
-        /*radar chart*/
-        .circle1 {
+      /*radar chart*/
+      .circle1 {
         width: 280px;
         height: 280px;
         margin: auto;
         background-color: #fff;
-        box-shadow: #AAA 0px 0px 30px;
+        box-shadow: #aaa 0px 0px 30px;
         border-radius: 50%;
         position: relative !important;
         margin: auto;
         top: 100px;
       }
       .circle2 {
-          width: 240px;
-          height: 240px;
-          margin: auto;
-          background-color: rgb(255, 255, 255);
-          box-shadow: rgb(204 204 204) 0px 0px 10px;
-          border-radius: 50%;
-          position: relative;
-          top: 20px;
+        width: 240px;
+        height: 240px;
+        margin: auto;
+        background-color: rgb(255, 255, 255);
+        box-shadow: rgb(204 204 204) 0px 0px 10px;
+        border-radius: 50%;
+        position: relative;
+        top: 20px;
       }
       .circle3 {
         width: 155px;
@@ -142,198 +136,200 @@ export class MvChart extends LitElement {
         top: 35px;
       }
 
-  .labelindic {
-    position: absolute;
-    left: 50%;
-    z-index: 9999;
-    width: 100px;
-    margin-left: -50px;
-    text-align: center;
-    top: 225px;
-  }
-
-
-
-      .labelindic span{text-transform:uppercase;font-size: 18px;position:relative;display:block;line-height:9px;}
-
-      .labelindic span  span {font-size:11px;text-transform:capitalize;}
-
-    /*  .labelindic:nth-child(2n) span{transform:180deg;}*/
-
-        .labelindic a {
-    color: rgb(0, 0, 0);
-    text-decoration: none;
-    display: block;
-    transform-origin: 250px center;
-    transform: rotate(90deg);
-    position: relative;
-    font-size: 18px;
-    right: 200px;
+      .labelindic {
+        position: absolute;
+        left: 50%;
+        z-index: 9999;
+        width: 100px;
+        margin-left: -50px;
+        text-align: center;
+        top: 225px;
       }
 
-     
+      .labelindic span {
+        text-transform: uppercase;
+        font-size: 18px;
+        position: relative;
+        display: block;
+        line-height: 9px;
+      }
 
-      .labelindic a:hover img{display:block !important;position:absolute;left:80px;bottom:10px;transform:scale(0.7);}
+      .labelindic span span {
+        font-size: 11px;
+        text-transform: capitalize;
+      }
 
+      /*  .labelindic:nth-child(2n) span{transform:180deg;}*/
 
+      .labelindic a {
+        color: rgb(0, 0, 0);
+        text-decoration: none;
+        display: block;
+        transform-origin: 250px center;
+        transform: rotate(90deg);
+        position: relative;
+        font-size: 18px;
+        right: 200px;
+      }
 
+      .labelindic a:hover img {
+        display: block !important;
+        position: absolute;
+        left: 80px;
+        bottom: 10px;
+        transform: scale(0.7);
+      }
 
-      .nolink a:hover{text-decoration:none;cursor:default;}
+      .nolink a:hover {
+        text-decoration: none;
+        cursor: default;
+      }
 
-
-
-
-      .mv-chart {    position: relative;
-    bottom: 190px;}
-    .mv-chart-canvas {
-      position: relative;
-    display: block !important;
-    height: 300px !important;
-    width: 440px !important;
-    left: -20px !important;
-    top: 0px !important;
-}
-
-
-
-
- 
-
-
-
-    `;
+      .mv-chart {
+        position: relative;
+        bottom: 190px;
+      }
+      .mv-chart-canvas {
+        position: relative;
+        display: block !important;
+        height: 300px !important;
+        width: 440px !important;
+        left: -20px !important;
+        top: 0px !important;
+      }
+    `
   }
 
   constructor() {
-    super();
-    this.theme = "light";
-    this.chart = null;
-    this.valeur = null;
-    this.data;
-
+    super()
+    this.theme = 'light'
+    this.chart = null
+    this.valeur = null
+    this.data
   }
-
-
 
   render() {
     return html`
+      <div style="transform: scale(1);">
+        ${this.displayRadarHits()}
 
-<div style="transform: scale(1);">
+        <div class="circle1" style="position:relative;">
+          <div class="circle2">
+            <div class="circle3"></div>
+          </div>
+        </div>
 
-  ${this.displayRadarHits()} 
-
-  <div class="circle1" style="position:relative;">
-    <div class="circle2">
-      <div class="circle3"></div>
-    </div>
-  </div>
-
-
-  <div class="mv-chart">
-    <canvas class="mv-chart-canvas" width="1024" height="720"></canvas>
-  </div>
-
-</div>
-
-
-    `;
+        <div class="mv-chart">
+          <canvas class="mv-chart-canvas" width="1024" height="720"></canvas>
+        </div>
+      </div>
+    `
   }
 
   firstUpdated() {
-
-
-    
     if (!this.chart) {
-   
-
-
-      const { data } = this;
-      const plugins = this.plugins || [];
-      plugins.push(ChartDataLabels);
-      const canvas = this
-        .shadowRoot
-        .querySelector(".mv-chart-canvas")
-        .getContext("2d");
-      this.chart = new Chart(canvas,  data );
-
-
+      const { data } = this
+      const plugins = this.plugins || []
+      plugins.push(ChartDataLabels)
+      const canvas = this.shadowRoot
+        .querySelector('.mv-chart-canvas')
+        .getContext('2d')
+      this.chart = new Chart(canvas, data)
     }
   }
+
+
+
+  displayChart() {
+    this.chart.destroy()
+
+    const { data } = this
+    const plugins = this.plugins || []
+    plugins.push(ChartDataLabels)
+    const canvas = this.shadowRoot
+      .querySelector('.mv-chart-canvas')
+      .getContext('2d')
+    this.chart = new Chart(canvas, data)
+  }
+
 
   displayRadarHits() {
-  
-    let i;
-    let loop = new Array();
-    this.valeur = new Array();
-    let max = this.data.data.labels.length;
 
-    let positionDeg =new Array();
-    let ratio = 360/max;
-    let pos = new Array();
 
+
+
+
+
+
+
+    let i
+    let loop = new Array()
+    this.valeur = new Array()
+    let max = this.data.data.labels.length
+
+    let positionDeg = new Array()
+    let ratio = 360 / max
+    let pos = new Array()
 
     for (i = 0; i < max; i++) {
+      this.valeur[i] = this.data.data.datasets[0].data[i]
 
-      this.valeur[i] = this.data.data.datasets[0].data[i];
-
-
-if (this.data.data.labels[i] != ''){
-      this.data.data.loader[i] = this.data.data.labels[i];
-
-      
-    }
-else{this.data.data.labels[i] = this.data.data.loader[i] }
-
-this.data.data.labels[i] = '';
-
-
-      positionDeg[i] = ratio*i; 
-
-
-      pos[i] = -90 * (i+1) - positionDeg[i] -90*(i+1) -90;
-
-   if(i%2 == 0)
-           {
-           pos[i] =  pos[i]+180;
-  
-            }
-               else
-                {
-     
-                 null;
-     
-          
-                 }
-
-
-
-      if (this.data.data.links[i] != '') {
-
-
-        loop[i] = html`
-    <div class="label${i + 1} labelindic pos-${i + 1}-${max}" style="transform: rotate(${positionDeg[i]}deg);">
-
-      <a href="${this.data.data.links[i]}" target="_blank">
-        <span style="transform:rotate(${pos[i]}deg);"><img src="./radarchart/src/img/fiche-radar.svg" style="display:none;"/><span>${this.data.data.loader[i]}</span ><br/>${this.valeur[i]} ${this.data.label}</span></a>
-
-    </div>`;
+      if (this.data.data.labels[i] != '') {
+        this.data.data.loader[i] = this.data.data.labels[i]
       } else {
-
-        loop[i] = html`
-    <div class="label${i + 1} labelindic pos-${i + 1}-${max} nolink"  style="transform: rotate(${positionDeg[i]}deg);">
-      <a >
-        <span  style="transform:rotate(${pos[i]}deg);" ><span>${this.data.data.loader[i]}</span><br/>${this.valeur[i]} ${this.data.label}</span></a>
-    </div>`;
-
+        this.data.data.labels[i] = this.data.data.loader[i]
       }
 
+      this.data.data.labels[i] = ''
+
+      positionDeg[i] = ratio * i
+
+      pos[i] = -90 * (i + 1) - positionDeg[i] - 90 * (i + 1) - 90
+
+      if (i % 2 == 0) {
+        pos[i] = pos[i] + 180
+      } else {
+        null
+      }
+
+      if (this.data.data.links[i] != '') {
+        loop[i] = html`
+          <div
+            class="label${i + 1} labelindic pos-${i + 1}-${max}"
+            style="transform: rotate(${positionDeg[i]}deg);"
+          >
+            <a href="${this.data.data.links[i]}" target="_blank">
+              <span style="transform:rotate(${pos[i]}deg);">
+                <img
+                  src="./radarchart/src/img/fiche-radar.svg"
+                  style="display:none;"
+                />
+                <span>${this.data.data.loader[i]}</span>
+                <br />
+                ${this.valeur[i]} ${this.data.label}
+              </span>
+            </a>
+          </div>
+        `
+      } else {
+        loop[i] = html`
+          <div
+            class="label${i + 1} labelindic pos-${i + 1}-${max} nolink"
+            style="transform: rotate(${positionDeg[i]}deg);"
+          >
+            <a>
+              <span style="transform:rotate(${pos[i]}deg);">
+                <span>${this.data.data.loader[i]}</span>
+                <br />
+                ${this.valeur[i]} ${this.data.label}
+              </span>
+            </a>
+          </div>
+        `
+      }
     }
-    return loop;
-
+    return loop
   }
-
-
-
 }
 
-customElements.define("mv-chart-radar", MvChart);
+customElements.define('mv-chart-radar', MvChart)
