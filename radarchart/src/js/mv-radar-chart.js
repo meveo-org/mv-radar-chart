@@ -1,10 +1,13 @@
 import { LitElement, html, css } from 'lit'
+import { Chart,  RadarController, ArcElement,RadialLinearScale,PointElement,LineElement } from 'chart.js'
+import ChartDataLabels  from 'chartjs-plugin-datalabels'
 
-import '../lib/chart.min.js'
-import '../lib/chartjs-plugin-datalabels.min.js'
 
 
-Chart.register(RadarController, ArcElement)
+Chart.register(RadarController, ArcElement,RadialLinearScale,PointElement,LineElement)
+
+
+
 
 
 
@@ -197,11 +200,11 @@ export class MvChart extends LitElement {
       }
       .mv-chart-canvas {
         position: relative;
-        display: block !important;
-        height: 300px !important;
-        width: 440px !important;
-        left: -20px !important;
-        top: 0px !important;
+    display: block !important;
+    height: 320px !important;
+    width: 320px !important;
+    left: 40px !important;
+    top: -10px !important;
       }
     `
   }
