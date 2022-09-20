@@ -4,7 +4,7 @@ import '../lib/chart.min.js'
 import '../lib/chartjs-plugin-datalabels.min.js'
 
 
-
+Chart.register(RadarController, ArcElement)
 
 
 

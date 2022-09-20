@@ -2,16 +2,17 @@
   "name": "mv-radar-chart",
   "type": "module",
   "main": "radarchart/src/js/mv-radar-chart.js",
-
   "dependencies": {
     "chart.js": "^3.9.1",
+    "chartjs": "^0.3.24",
     "chartjs-plugin-datalabels": "^2.1.0",
     "lit": "^2.3.1",
     "lit-element": "^3.2.2",
     "lit-html": "^2.3.1"
   },
   "scripts": {
-    "dev": "webpack serve -c webpack.config.cjs"
+    "dev": "webpack serve -c webpack.config.cjs",
+    "build": "webpack ./radarchart/src/js/mv-radar-chart.js --output-filename=index.js --mode=development"
   },
   "devDependencies": {
     "webpack": "^5.74.0",
