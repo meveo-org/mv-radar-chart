@@ -1,12 +1,34 @@
-import { LitElement, html, css } from "https://cdn.jsdelivr.net/gh/meveo-org/mv-dependencies@master/lit-element.js";
+import { LitElement, html, css } from "lit";
 //import "mv-container";
 import "./radarchart/src/js/mv-radar-chart.js";
-import { RADAR_CONFIG } from "./radarchart/src/js/data.js";
-
+import { RADAR_DATAS } from "./radarchart/src/js/data.js";
+import { RADAR_OPTIONS } from "./radarchart/src/js/config.js";
+const RADAR = JSON.parse(
+  '{ "type": "radar","label": "hits", "loader": [], "type": "radar", "label": "hits", "data":' +
+    JSON.stringify(RADAR_DATAS) +
+    ', "options" :' +
+    JSON.stringify(RADAR_OPTIONS) +
+    '}',
+)
 export class MvChartBubbleDemo extends LitElement {
   static get properties() {
     return {
       theme: { type: String, attribute: true },
+      RADAR_OPTIONS: {
+        type: Object,
+        attribute: false,
+        reflect: true,
+      },
+      RADAR_DATAS: {
+        type: Object,
+        attribute: false,
+        reflect: true,
+      },
+      DONUT: {
+        type: Object,
+        attribute: false,
+        reflect: true,
+      },
     };
   }
 
@@ -102,7 +124,7 @@ export class MvChartBubbleDemo extends LitElement {
       </fieldset>
       
       <mv-container class="main-container" .theme="${this.theme}">
-        <mv-chart-radar .data="${RADAR_CONFIG}"></mv-chart-radar>
+        <mv-chart-radar .data="${RADAR}"></mv-chart-radar>
       </mv-container>
 
 
@@ -113,7 +135,7 @@ export class MvChartBubbleDemo extends LitElement {
         @change="${this.getNewVal}"
       >
 
-      ${JSON.stringify(RADAR_CONFIG.data)}
+      ${JSON.stringify(RADAR_DATAS)}
       
   </textarea>
 
@@ -129,7 +151,7 @@ export class MvChartBubbleDemo extends LitElement {
 
   
   getNewVal() {
-    let start = '{ "type": "radar","label": "hits","data":'
+    let start = '{ "type": "radar","label": "hits",    "type": "radar", "label": "hits", "data": '
 
     let newVal = this.shadowRoot.querySelector('textarea').value
 

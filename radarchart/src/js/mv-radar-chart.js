@@ -1,6 +1,12 @@
-import { LitElement, html, css } from 'https://cdn.jsdelivr.net/gh/meveo-org/mv-dependencies@master/lit-element.js'
+import { LitElement, html, css } from 'lit'
+
 import '../lib/chart.min.js'
 import '../lib/chartjs-plugin-datalabels.min.js'
+
+
+
+
+
 
 export class MvChart extends LitElement {
   static get properties() {
@@ -255,13 +261,7 @@ export class MvChart extends LitElement {
 
   displayRadarHits() {
 
-
-
-
-
-
-
-
+    console.log(this.data.data.labels)
     let i
     let loop = new Array()
     this.valeur = new Array()
