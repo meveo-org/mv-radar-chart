@@ -1,10 +1,10 @@
-# mv-chart
+# mv-radar-chart
 
-MvChart is a Meveo chart component (based on lit-element) that renders a content chart.  This is a component wrapper for [chartjs](https://www.chartjs.org/)
+MvRadarChart is a Meveo chart component (based on lit-element) that renders a content chart.  This is a component wrapper for [chartjs](https://www.chartjs.org/)
 
 ## Quick Start
 
-To experiment with the MvChart component.
+To experiment with the MvRadarChart component.
 
 1. Clone this repo.
 
@@ -21,7 +21,7 @@ To experiment with the MvChart component.
 </mv-chart-radar>
 ```
 
-The column schema has the following properties:
+The chart has the following properties:
 ```javascript
 {
     labels: ['',''], // data labels
