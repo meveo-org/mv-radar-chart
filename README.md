@@ -15,7 +15,10 @@ To experiment with the MvChart component.
 ## Sample usage
 
 ```html
-<mv-chart-radar></mv-chart-radar>
+<mv-chart-radar
+.data="${RADAR}" // data properties
+.theme="${this.theme}" // theme is either "light" or "dark">
+</mv-chart-radar>
 ```
 
 You can also check this [demo](https://chart.meveo.org/)
