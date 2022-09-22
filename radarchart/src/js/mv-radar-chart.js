@@ -1,7 +1,62 @@
 import { LitElement, html, css } from 'lit'
 import { Chart,  RadarController, ArcElement,RadialLinearScale,PointElement,LineElement } from 'chart.js'
 import ChartDataLabels  from 'chartjs-plugin-datalabels'
+const OPTIONS ={
+  legend: {
+    display: false,
+    title: false,
+    labels: {
+      usePointStyle: false,
+    },
+    datalabels: {
+      display: false,
+    },
 
+
+  },
+  tooltips: {
+    enabled: false,
+  },
+
+  gridLines: {
+    display: false
+  },
+  scale: {
+    y: {
+      ticks: {
+        // For a category axis, the val is the index so the lookup via getLabelForValue is needed
+        callback: function (val, index) {
+          // Hide every 2nd tick label
+          return index % 2 === 0 ? this.getLabelForValue(val) : '';
+        },
+        color: 'red',
+      }
+    },
+
+    ticks: {
+      maxTicksLimit: 1,
+      display: false,
+      drawTicks: false,
+      display: false
+    },
+    gridLines: {
+      drawOnChartArea: false,
+      display: false
+    },
+    pointLabel: {
+      display: false
+    }
+  },
+  plugins: {
+    datalabels: { display: false }
+  },
+
+  elements: {
+    line: {
+      borderWidth: 3
+    }
+  }
+}
 
 
 Chart.register(RadarController, ArcElement,RadialLinearScale,PointElement,LineElement)
@@ -25,6 +80,7 @@ export class MvChart extends LitElement {
         type: String,
         attribute: true,
       },
+      
     }
   }
 
@@ -214,7 +270,8 @@ export class MvChart extends LitElement {
     this.theme = 'light'
     this.chart = null
     this.valeur = null
-    this.data
+
+
   }
 
   render() {
@@ -236,21 +293,41 @@ export class MvChart extends LitElement {
   }
 
   firstUpdated() {
-    if (!this.chart) {
-      const { data } = this
-      const plugins = this.plugins || []
-      plugins.push(ChartDataLabels)
-      const canvas = this.shadowRoot
-        .querySelector('.mv-chart-canvas')
-        .getContext('2d')
-      this.chart = new Chart(canvas, data)
-    }
+
+    this.loadDatas()
+    this.displayChart()
+    this.displayRadarHits()
+
   }
 
+  loadDatas(){
 
+    
+
+
+    this.data.type = "radar"
+    this.data.loader = []
+
+    let DATAS = this.data
+ 
+
+    this.data.options = OPTIONS 
+    this.data.data = DATAS
+
+
+
+    
+    
+
+  
+  }
 
   displayChart() {
-    this.chart.destroy()
+    if (this.chart){
+      this.chart.destroy()
+
+
+    }
 
     const { data } = this
     const plugins = this.plugins || []
@@ -264,26 +341,26 @@ export class MvChart extends LitElement {
 
   displayRadarHits() {
 
-    console.log(this.data.data.labels)
+
     let i
     let loop = new Array()
     this.valeur = new Array()
-    let max = this.data.data.labels.length
+    let max = this.data.labels.length
 
     let positionDeg = new Array()
     let ratio = 360 / max
     let pos = new Array()
 
     for (i = 0; i < max; i++) {
-      this.valeur[i] = this.data.data.datasets[0].data[i]
+      this.valeur[i] = this.data.datasets[0].data[i]
 
-      if (this.data.data.labels[i] != '') {
-        this.data.data.loader[i] = this.data.data.labels[i]
+      if (this.data.labels[i] != '') {
+        this.data.loader[i] = this.data.labels[i]
       } else {
-        this.data.data.labels[i] = this.data.data.loader[i]
+        this.data.labels[i] = this.data.loader[i]
       }
 
-      this.data.data.labels[i] = ''
+      this.data.labels[i] = ''
 
       positionDeg[i] = ratio * i
 
@@ -295,19 +372,19 @@ export class MvChart extends LitElement {
         null
       }
 
-      if (this.data.data.links[i] != '') {
+      if (this.data.links[i] != '') {
         loop[i] = html`
           <div
             class="label${i + 1} labelindic pos-${i + 1}-${max}"
             style="transform: rotate(${positionDeg[i]}deg);"
           >
-            <a href="${this.data.data.links[i]}" target="_blank">
+            <a href="${this.data.links[i]}" target="_blank">
               <span style="transform:rotate(${pos[i]}deg);">
                 <img
                   src="./radarchart/src/img/fiche-radar.svg"
                   style="display:none;"
                 />
-                <span>${this.data.data.loader[i]}</span>
+                <span>${this.data.loader[i]}</span>
                 <br />
                 ${this.valeur[i]} ${this.data.label}
               </span>
@@ -322,7 +399,7 @@ export class MvChart extends LitElement {
           >
             <a>
               <span style="transform:rotate(${pos[i]}deg);">
-                <span>${this.data.data.loader[i]}</span>
+                <span>${this.data.loader[i]}</span>
                 <br />
                 ${this.valeur[i]} ${this.data.label}
               </span>

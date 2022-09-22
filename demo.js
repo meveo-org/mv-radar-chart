@@ -1,15 +1,9 @@
 import { LitElement, html, css } from "lit";
 //import "mv-container";
 import "./radarchart/src/js/mv-radar-chart.js";
-import { RADAR_DATAS } from "./radarchart/src/js/data.js";
-import { RADAR_OPTIONS } from "./radarchart/src/js/config.js";
-const RADAR = JSON.parse(
-  '{ "type": "radar","label": "hits", "loader": [], "type": "radar", "label": "hits", "data":' +
-    JSON.stringify(RADAR_DATAS) +
-    ', "options" :' +
-    JSON.stringify(RADAR_OPTIONS) +
-    '}',
-)
+import { DATA } from "./radarchart/src/js/data.js";
+
+
 export class MvChartBubbleDemo extends LitElement {
   static get properties() {
     return {
@@ -124,7 +118,7 @@ export class MvChartBubbleDemo extends LitElement {
       </fieldset>
       
       <mv-container class="main-container" .theme="${this.theme}">
-        <mv-chart-radar .data="${RADAR}"></mv-chart-radar>
+        <mv-chart-radar .data="${DATA}"></mv-chart-radar>
       </mv-container>
 
 
@@ -135,7 +129,7 @@ export class MvChartBubbleDemo extends LitElement {
         @change="${this.getNewVal}"
       >
 
-      ${JSON.stringify(RADAR_DATAS)}
+      ${JSON.stringify(DATA)}
       
   </textarea>
 
@@ -151,24 +145,18 @@ export class MvChartBubbleDemo extends LitElement {
 
   
   getNewVal() {
-    let start = '{ "type": "radar","label": "hits",    "type": "radar", "label": "hits", "data": '
 
     let newVal = this.shadowRoot.querySelector('textarea').value
 
-    let end =',"options":{"legend":{"display":false,"title":false,"labels":{"usePointStyle":false},"datalabels":{"display":false}},"tooltips":{"enabled":false},"gridLines":{"display":false},"scale":{"y":{"ticks":{"color":"red"}},"ticks":{"maxTicksLimit":1,"display":false,"drawTicks":false},"gridLines":{"drawOnChartArea":false,"display":false},"pointLabel":{"display":false}},"plugins":{"datalabels":{"display":false}},"elements":{"line":{"borderWidth":3}}}}'
 
-    newVal = start + newVal + end
-
-   
+ 
 
     newVal = JSON.parse(newVal)
 
-    console.log(newVal)
 
-    /* TODO Uncaught SyntaxError: Expected double-quoted property name in JSON at position 41 */
 
     this.shadowRoot.querySelector('mv-chart-radar').data = newVal
-
+    this.shadowRoot.querySelector('mv-chart-radar').loadDatas()
     this.shadowRoot.querySelector('mv-chart-radar').displayRadarHits()
     this.shadowRoot.querySelector('mv-chart-radar').displayChart()
   

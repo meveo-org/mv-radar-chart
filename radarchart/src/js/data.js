@@ -1,17 +1,19 @@
-export const RADAR_DATAS = {
+export const DATA = {
+
+    label: "hits",
     labels: [
       'Android',
       'Apple',
       'Microsoft',
-      'Huawai',
-      'Sony',
-      'Huawai'
+      'Facebook',
+      'Instagram',
+      'Asus'
     ],
 
     links: [
       'http://google.com',
       'http://apple.com',
-      '',
+      'http://microsoft.com',
       'http://facebook.com',
       'http://instagram.com',
       'http://asus.com'
