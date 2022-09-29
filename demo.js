@@ -8,21 +8,9 @@ export class MvChartBubbleDemo extends LitElement {
   static get properties() {
     return {
       theme: { type: String, attribute: true },
-      RADAR_OPTIONS: {
-        type: Object,
-        attribute: false,
-        reflect: true,
-      },
-      RADAR_DATAS: {
-        type: Object,
-        attribute: false,
-        reflect: true,
-      },
-      DONUT: {
-        type: Object,
-        attribute: false,
-        reflect: true,
-      },
+      _data: { type: Object, state: true, reflect: true }
+
+
     };
   }
 
@@ -99,6 +87,7 @@ export class MvChartBubbleDemo extends LitElement {
   constructor() {
     super();
     this.theme = "light";
+    this._data = DATA;
   }
 
   firstUpdated() {
@@ -118,20 +107,13 @@ export class MvChartBubbleDemo extends LitElement {
       </fieldset>
       
       <mv-container class="main-container" .theme="${this.theme}">
-        <mv-chart-radar .data="${DATA}"></mv-chart-radar>
+        <mv-chart-radar .data="${this._data}"></mv-chart-radar>
       </mv-container>
 
 
 
 
-      <textarea
-        id="data-donut"
-        @change="${this.getNewVal}"
-      >
-
-      ${JSON.stringify(DATA)}
-      
-  </textarea>
+      <textarea id="data-radar" @change="${this.getNewVal}">  ${JSON.stringify(this._data, null, 2)} </textarea>
 
     `;
   }
@@ -151,14 +133,11 @@ export class MvChartBubbleDemo extends LitElement {
 
  
 
-    newVal = JSON.parse(newVal)
+    this._data = JSON.parse(newVal);
 
 
 
-    this.shadowRoot.querySelector('mv-chart-radar').data = newVal
-    this.shadowRoot.querySelector('mv-chart-radar').loadDatas()
-    this.shadowRoot.querySelector('mv-chart-radar').displayRadarHits()
-    this.shadowRoot.querySelector('mv-chart-radar').displayChart()
+
   
 
 

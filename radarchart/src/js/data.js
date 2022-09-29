@@ -1,35 +1,27 @@
-export const DATA = {
-
-    label: "hits",
-    labels: [
-      'Android',
-      'Apple',
-      'Microsoft',
-      'Facebook',
-      'Instagram',
-      'Asus'
-    ],
-
-    links: [
-      'http://google.com',
-      'http://apple.com',
-      'http://microsoft.com',
-      'http://facebook.com',
-      'http://instagram.com',
-      'http://asus.com'
-    ],
-    "loader": [],
-    datasets: [{
-      data: [10, 20, 30, 40,50,12],
-      fill: true,
-      backgroundColor: 'rgba(255, 99, 132, 0)',
-      borderColor: '#FF1A44',
-      pointBackgroundColor: 'rgb(255, 255, 255)',
-      pointBorderColor: 'black',
-      pointHoverBackgroundColor: '#fff',
-      pointHoverBorderColor: 'rgb(255, 99, 132)',
-
-    }]
+ export const DATA = [
+    {
+        name: "Pinterest",
+        data: 10,
+        link: "http://pinterest.com"
+    },
+    {
+      name: "Youtube",
+      data: 20,
+      link: "http://youtube.com"
+  },
+  {
+    name: "Instagram",
+    data: 30,
+    link: "http://instagram.com"
+  },
+  {
+    name: "Snapchat",
+    data: 25,
+    link: "http:/snapchat.com"
+  },
+  {
+    name: "Snapchat",
+    data: 25,
+    link: "http:/snapchat.com"
   }
-
-
+  ]

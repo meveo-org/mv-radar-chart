@@ -1,70 +1,21 @@
 import { LitElement, html, css } from 'lit'
-import { Chart,  RadarController, ArcElement,RadialLinearScale,PointElement,LineElement } from 'chart.js'
-import ChartDataLabels  from 'chartjs-plugin-datalabels'
-const OPTIONS ={
-  legend: {
-    display: false,
-    title: false,
-    labels: {
-      usePointStyle: false,
-    },
-    datalabels: {
-      display: false,
-    },
+import {
+  Chart,
+  RadarController,
+  ArcElement,
+  RadialLinearScale,
+  PointElement,
+  LineElement,
+} from 'chart.js'
+import ChartDataLabels from 'chartjs-plugin-datalabels'
 
-
-  },
-  tooltips: {
-    enabled: false,
-  },
-
-  gridLines: {
-    display: false
-  },
-  scale: {
-    y: {
-      ticks: {
-        // For a category axis, the val is the index so the lookup via getLabelForValue is needed
-        callback: function (val, index) {
-          // Hide every 2nd tick label
-          return index % 2 === 0 ? this.getLabelForValue(val) : '';
-        },
-        color: 'red',
-      }
-    },
-
-    ticks: {
-      maxTicksLimit: 1,
-      display: false,
-      drawTicks: false,
-      display: false
-    },
-    gridLines: {
-      drawOnChartArea: false,
-      display: false
-    },
-    pointLabel: {
-      display: false
-    }
-  },
-  plugins: {
-    datalabels: { display: false }
-  },
-
-  elements: {
-    line: {
-      borderWidth: 3
-    }
-  }
-}
-
-
-Chart.register(RadarController, ArcElement,RadialLinearScale,PointElement,LineElement)
-
-
-
-
-
+Chart.register(
+  RadarController,
+  ArcElement,
+  RadialLinearScale,
+  PointElement,
+  LineElement,
+)
 
 export class MvChart extends LitElement {
   static get properties() {
@@ -80,7 +31,6 @@ export class MvChart extends LitElement {
         type: String,
         attribute: true,
       },
-      
     }
   }
 
@@ -256,11 +206,11 @@ export class MvChart extends LitElement {
       }
       .mv-chart-canvas {
         position: relative;
-    display: block !important;
-    height: 320px !important;
-    width: 320px !important;
-    left: 40px !important;
-    top: -10px !important;
+        display: block !important;
+        height: 320px !important;
+        width: 320px !important;
+        left: 40px !important;
+        top: -10px !important;
       }
     `
   }
@@ -270,14 +220,12 @@ export class MvChart extends LitElement {
     this.theme = 'light'
     this.chart = null
     this.valeur = null
-
-
   }
 
   render() {
     return html`
       <div style="transform: scale(1);">
-        ${this.displayRadarHits()}
+        ${this.convertToChrtJsFormat(this.data)} ${this.displayRadarHits()}
 
         <div class="circle1" style="position:relative;">
           <div class="circle2">
@@ -292,75 +240,84 @@ export class MvChart extends LitElement {
     `
   }
 
-  firstUpdated() {
-
-    this.loadDatas()
+  updated() {
     this.displayChart()
-    this.displayRadarHits()
 
-  }
-
-  loadDatas(){
-
-    
-
-
-    this.data.type = "radar"
-    this.data.loader = []
-
-    let DATAS = this.data
- 
-
-    this.data.options = OPTIONS 
-    this.data.data = DATAS
-
-
-
-    
-    
-
-  
+    //  this.displayRadarHits()
   }
 
   displayChart() {
-    if (this.chart){
+    if (this.chart) {
       this.chart.destroy()
-
-
     }
 
-    const { data } = this
     const plugins = this.plugins || []
     plugins.push(ChartDataLabels)
     const canvas = this.shadowRoot
       .querySelector('.mv-chart-canvas')
       .getContext('2d')
-    this.chart = new Chart(canvas, data)
+    this.chart = new Chart(canvas, this.data)
+
+    console.log(canvas)
   }
 
+  convertToChrtJsFormat(input) {
+    let linksIn = []
+    let names = []
+    let datas = []
+
+    var obj = input
+
+    let i = 0
+
+    for (var key in obj) {
+      if (i < 200) {
+        var value = obj[key]
+
+        names.push('"' + value.name + '"')
+        datas.push('"' + value.data + '"')
+        linksIn.push('"' + value.link + '"')
+        i++
+      }
+    }
+    /*
+                let reformatData = '{"type" : "doughnut" , "result" : "100%", "imgUrl": "./web_modules/mv-chart/chartjs/donutchart/img/donut-img.svg", "label" :"Profil", "data" :{ "label" : "donut","names" : ['+names+'], "datasets" :[{ "label" : "donut" , "data" : ['+datas+'],"links" : ['+linksIn+'], "backgroundColor" : ['+backgroundColors+']}],"hoverOffset": 4, "doughnut": {"borderWidth": 100 }},"options" :{"responsive" : true, "maintainAspectRatio" : false,"plugins": {  "datalabels": {"color": "#ffffff", "font": { "size": 18, "weight": "bold" } }  }, "legend": {  "display": false }, "title": {"display": false }, "animation": { "animateScale": true, "animateRotate": true }, "tooltips": { "enabled": false }}}'
+*/
+
+    let reformatData =
+      '{ "type" : "radar","label": "hits",  "data":{ "labels": [ ' +
+      names +
+      '  ], "links": [ ' +
+      linksIn +
+      ' ],  "loader": [],  "datasets": [{ "data": [' +
+      datas +
+      '],  "fill": true, "backgroundColor": "rgba(255, 99, 132, 0)", "borderColor": "#FF1A44", "pointBackgroundColor": "rgb(255, 255, 255)", "pointBorderColor": "black", "pointHoverBackgroundColor": "#fff", "pointHoverBorderColor": "rgb(255, 99, 132)" }]}, "options" : {  "legend": {  "display": false, "title": false, "labels": {  "usePointStyle": false   },  "datalabels": {  "display": false } },  "tooltips": { "enabled": false }, "gridLines": {  "display": false },  "scale": { "y": { "ticks": {  "color": "red" } }, "ticks": { "maxTicksLimit": 1, "display": false,  "drawTicks": false,  "display": false },  "gridLines": {  "drawOnChartArea": false,  "display": false  }, "pointLabel": { "display": false } },  "plugins": { "datalabels": { "display": false } }, "elements": { "line": {  "borderWidth": 3 }  } }}'
+
+    this.data = JSON.parse(reformatData)
+  }
 
   displayRadarHits() {
-
+    console.log(this.data)
 
     let i
     let loop = new Array()
     this.valeur = new Array()
-    let max = this.data.labels.length
+    let max = this.data.data.labels.length
 
     let positionDeg = new Array()
     let ratio = 360 / max
     let pos = new Array()
 
     for (i = 0; i < max; i++) {
-      this.valeur[i] = this.data.datasets[0].data[i]
+      this.valeur[i] = this.data.data.datasets[0].data[i]
 
-      if (this.data.labels[i] != '') {
-        this.data.loader[i] = this.data.labels[i]
+      if (this.data.data.labels[i] != '') {
+        this.data.data.loader[i] = this.data.data.labels[i]
       } else {
-        this.data.labels[i] = this.data.loader[i]
+        this.data.data.labels[i] = this.data.data.loader[i]
       }
 
-      this.data.labels[i] = ''
+      this.data.data.labels[i] = ''
 
       positionDeg[i] = ratio * i
 
@@ -372,19 +329,19 @@ export class MvChart extends LitElement {
         null
       }
 
-      if (this.data.links[i] != '') {
+      if (this.data.data.links[i] != '') {
         loop[i] = html`
           <div
             class="label${i + 1} labelindic pos-${i + 1}-${max}"
             style="transform: rotate(${positionDeg[i]}deg);"
           >
-            <a href="${this.data.links[i]}" target="_blank">
+            <a href="${this.data.data.links[i]}" target="_blank">
               <span style="transform:rotate(${pos[i]}deg);">
                 <img
                   src="./radarchart/src/img/fiche-radar.svg"
                   style="display:none;"
                 />
-                <span>${this.data.loader[i]}</span>
+                <span>${this.data.data.loader[i]}</span>
                 <br />
                 ${this.valeur[i]} ${this.data.label}
               </span>
@@ -399,7 +356,7 @@ export class MvChart extends LitElement {
           >
             <a>
               <span style="transform:rotate(${pos[i]}deg);">
-                <span>${this.data.loader[i]}</span>
+                <span>${this.data.data.loader[i]}</span>
                 <br />
                 ${this.valeur[i]} ${this.data.label}
               </span>
