@@ -274,26 +274,62 @@ export class MvChart extends LitElement {
       if (i < 200) {
         var value = obj[key]
 
-        names.push('"' + value.name + '"')
+        names.push(value.name)
         datas.push('"' + value.data + '"')
-        linksIn.push('"' + value.link + '"')
+        linksIn.push(value.link)
         i++
       }
     }
-    /*
+
+    this.data = {}
+
+
+
+/*
                 let reformatData = '{"type" : "doughnut" , "result" : "100%", "imgUrl": "./web_modules/mv-chart/chartjs/donutchart/img/donut-img.svg", "label" :"Profil", "data" :{ "label" : "donut","names" : ['+names+'], "datasets" :[{ "label" : "donut" , "data" : ['+datas+'],"links" : ['+linksIn+'], "backgroundColor" : ['+backgroundColors+']}],"hoverOffset": 4, "doughnut": {"borderWidth": 100 }},"options" :{"responsive" : true, "maintainAspectRatio" : false,"plugins": {  "datalabels": {"color": "#ffffff", "font": { "size": 18, "weight": "bold" } }  }, "legend": {  "display": false }, "title": {"display": false }, "animation": { "animateScale": true, "animateRotate": true }, "tooltips": { "enabled": false }}}'
 */
 
-    let reformatData =
-      '{ "type" : "radar","label": "hits",  "data":{ "labels": [ ' +
-      names +
-      '  ], "links": [ ' +
-      linksIn +
-      ' ],  "loader": [],  "datasets": [{ "data": [' +
-      datas +
-      '],  "fill": true, "backgroundColor": "rgba(255, 99, 132, 0)", "borderColor": "#FF1A44", "pointBackgroundColor": "rgb(255, 255, 255)", "pointBorderColor": "black", "pointHoverBackgroundColor": "#fff", "pointHoverBorderColor": "rgb(255, 99, 132)" }]}, "options" : {  "legend": {  "display": false, "title": false, "labels": {  "usePointStyle": false   },  "datalabels": {  "display": false } },  "tooltips": { "enabled": false }, "gridLines": {  "display": false },  "scale": { "y": { "ticks": {  "color": "red" } }, "ticks": { "maxTicksLimit": 1, "display": false,  "drawTicks": false,  "display": false },  "gridLines": {  "drawOnChartArea": false,  "display": false  }, "pointLabel": { "display": false } },  "plugins": { "datalabels": { "display": false } }, "elements": { "line": {  "borderWidth": 3 }  } }}'
 
-    this.data = JSON.parse(reformatData)
+    this.data.type = "radar"
+    this.data.label ="hits"
+    this.data.data ={}
+    this.data.data.labels = names 
+    this.data.data.links = linksIn
+    this.data.data.loader = []
+    this.data.data.datasets =  JSON.parse('[{ "data": [' + datas + '],  "fill": true, "backgroundColor": "rgba(255, 99, 132, 0)", "borderColor": "#FF1A44", "pointBackgroundColor": "rgb(255, 255, 255)", "pointBorderColor": "black", "pointHoverBackgroundColor": "#fff", "pointHoverBorderColor": "rgb(255, 99, 132)" }]')
+    this.data.options = {}
+    this.data.options.legend = {}
+    this.data.options.legend.display = false
+    this.data.options.legend.title =  false
+    this.data.options.labels = {}
+    this.data.options.labels.usePointStyle =  false   
+
+    this.data.options.tooltips={}
+    this.data.options.tooltips.enabled = false
+    this.data.options.gridLines = {}
+    this.data.options.gridLines.display =  false 
+    this.data.options.scale ={}
+    this.data.options.scale.y = {}
+    this.data.options.scale.y.ticks = {}
+  
+    this.data.options.ticks={}
+    this.data.options.ticks.maxTicksLimit =  1
+    this.data.options.ticks.display = false    
+    this.data.options.ticks.drawTicks = false    
+    this.data.options.gridLines.drawOnChartArea = false,   
+    this.data.options.gridLines.display = false 
+    this.data.options.pointLabel = {}
+    this.data.options.pointLabel.display = false
+    this.data.options.plugins ={}
+    this.data.options.plugins.datalabels = {}
+    this.data.options.plugins.datalabels.display = false
+
+
+
+
+    this.data.options.elements = {}
+    this.data.options.elements.line = {}
+    this.data.options.elements.line.borderWidth =  3
   }
 
   displayRadarHits() {
