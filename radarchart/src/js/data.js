@@ -17,11 +17,11 @@
   {
     name: "Snapchat",
     data: 25,
-    link: "http:/snapchat.com"
+    link: "http://snapchat.com"
   },
   {
     name: "Snapchat",
     data: 25,
-    link: "http:/snapchat.com"
+    link: ""
   }
   ]
