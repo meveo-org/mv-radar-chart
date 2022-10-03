@@ -290,32 +290,16 @@ export class MvChart extends LitElement {
     this.data.data.loader = []
     this.data.data.datasets =  JSON.parse('[{ "data": [' + datas + '],  "fill": true, "backgroundColor": "rgba(255, 99, 132, 0)", "borderColor": "#FF1A44", "pointBackgroundColor": "rgb(255, 255, 255)", "pointBorderColor": "black", "pointHoverBackgroundColor": "#fff", "pointHoverBorderColor": "rgb(255, 99, 132)" }]')
     this.data.options = {}
-    this.data.options.legend = {}
-    this.data.options.legend.display = false
-    this.data.options.legend.title =  false
-    this.data.options.labels = {}
-    this.data.options.labels.usePointStyle =  false   
-    this.data.options.tooltips={}
-    this.data.options.tooltips.enabled = false
-    this.data.options.gridLines = {}
-    this.data.options.gridLines.display =  false 
     this.data.options.scale ={}
     this.data.options.scale.y = {}
     this.data.options.scale.y.ticks = {}
     this.data.options.ticks={}
     this.data.options.ticks.maxTicksLimit =  1
-    this.data.options.ticks.display = false    
-    this.data.options.ticks.drawTicks = false    
-    this.data.options.gridLines.drawOnChartArea = false,   
-    this.data.options.gridLines.display = false 
-    this.data.options.pointLabel = {}
-    this.data.options.pointLabel.display = false
-    this.data.options.plugins ={}
-    this.data.options.plugins.datalabels = {}
-    this.data.options.plugins.datalabels.display = false
-    this.data.options.elements = {}
-    this.data.options.elements.line = {}
-    this.data.options.elements.line.borderWidth =  3
+  
+
+
+
+
   }
 
   displayRadarHits() {
