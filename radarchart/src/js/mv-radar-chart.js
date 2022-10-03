@@ -282,14 +282,6 @@ export class MvChart extends LitElement {
     }
 
     this.data = {}
-
-
-
-/*
-                let reformatData = '{"type" : "doughnut" , "result" : "100%", "imgUrl": "./web_modules/mv-chart/chartjs/donutchart/img/donut-img.svg", "label" :"Profil", "data" :{ "label" : "donut","names" : ['+names+'], "datasets" :[{ "label" : "donut" , "data" : ['+datas+'],"links" : ['+linksIn+'], "backgroundColor" : ['+backgroundColors+']}],"hoverOffset": 4, "doughnut": {"borderWidth": 100 }},"options" :{"responsive" : true, "maintainAspectRatio" : false,"plugins": {  "datalabels": {"color": "#ffffff", "font": { "size": 18, "weight": "bold" } }  }, "legend": {  "display": false }, "title": {"display": false }, "animation": { "animateScale": true, "animateRotate": true }, "tooltips": { "enabled": false }}}'
-*/
-
-
     this.data.type = "radar"
     this.data.label ="hits"
     this.data.data ={}
@@ -303,7 +295,6 @@ export class MvChart extends LitElement {
     this.data.options.legend.title =  false
     this.data.options.labels = {}
     this.data.options.labels.usePointStyle =  false   
-
     this.data.options.tooltips={}
     this.data.options.tooltips.enabled = false
     this.data.options.gridLines = {}
@@ -311,7 +302,6 @@ export class MvChart extends LitElement {
     this.data.options.scale ={}
     this.data.options.scale.y = {}
     this.data.options.scale.y.ticks = {}
-  
     this.data.options.ticks={}
     this.data.options.ticks.maxTicksLimit =  1
     this.data.options.ticks.display = false    
@@ -323,10 +313,6 @@ export class MvChart extends LitElement {
     this.data.options.plugins ={}
     this.data.options.plugins.datalabels = {}
     this.data.options.plugins.datalabels.display = false
-
-
-
-
     this.data.options.elements = {}
     this.data.options.elements.line = {}
     this.data.options.elements.line.borderWidth =  3
