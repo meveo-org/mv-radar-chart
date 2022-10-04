@@ -1,4 +1,4 @@
-import { LitElement, html, css } from 'lit'
+import { LitElement, html, css } from 'lit';
 import {
   Chart,
   RadarController,
@@ -6,8 +6,8 @@ import {
   RadialLinearScale,
   PointElement,
   LineElement,
-} from 'chart.js'
-import ChartDataLabels from 'chartjs-plugin-datalabels'
+} from 'chart.js';
+import ChartDataLabels from 'chartjs-plugin-datalabels';
 
 Chart.register(
   RadarController,
@@ -15,9 +15,9 @@ Chart.register(
   RadialLinearScale,
   PointElement,
   LineElement,
-)
+);
 
-export class MvChart extends LitElement {
+export default class MvChart extends LitElement {
   static get properties() {
     return {
       data: {
@@ -31,7 +31,7 @@ export class MvChart extends LitElement {
         type: String,
         attribute: true,
       },
-    }
+    };
   }
 
   static get styles() {
@@ -212,14 +212,14 @@ export class MvChart extends LitElement {
         left: 40px !important;
         top: -16px !important;
       }
-    `
+    `;
   }
 
   constructor() {
-    super()
-    this.theme = 'light'
-    this.chart = null
-    this.valeur = null
+    super();
+    this.theme = 'light';
+    this.chart = null;
+    this.valeur = null;
   }
 
   render() {
@@ -237,105 +237,86 @@ export class MvChart extends LitElement {
           <canvas class="mv-chart-canvas" width="1024" height="720"></canvas>
         </div>
       </div>
-    `
+    `;
   }
 
   updated() {
-    this.displayChart()
+    this.displayChart();
 
     //  this.displayRadarHits()
   }
 
   displayChart() {
     if (this.chart) {
-      this.chart.destroy()
+      this.chart.destroy();
     }
-
-    const plugins = this.plugins || []
-    plugins.push(ChartDataLabels)
+    const plugins = this.plugins || [];
+    plugins.push(ChartDataLabels);
     const canvas = this.shadowRoot
       .querySelector('.mv-chart-canvas')
-      .getContext('2d')
-    this.chart = new Chart(canvas, this.data)
-
-    console.log(canvas)
+      .getContext('2d');
+    this.chart = new Chart(canvas, this.data);
   }
 
   convertToChrtJsFormat(input) {
-    let linksIn = []
-    let names = []
-    let datas = []
+    const linksIn = [];
+    const names = [];
+    const datas = [];
 
-    var obj = input
+    const obj = input;
 
-    let i = 0
+    obj.forEach((value) => {
+      names.push(`${value.name}`);
+      datas.push(`${value.data}`);
+      linksIn.push(`${value.link}`);
+    });
 
-    for (var key in obj) {
-      if (i < 200) {
-        var value = obj[key]
-
-        names.push(value.name)
-        datas.push('"' + value.data + '"')
-        linksIn.push(value.link)
-        i++
-      }
-    }
-
-    this.data = {}
-    this.data.type = "radar"
-    this.data.label ="hits"
-    this.data.data ={}
-    this.data.data.labels = names 
-    this.data.data.links = linksIn
-    this.data.data.loader = []
-    this.data.data.datasets =  JSON.parse('[{ "data": [' + datas + '],  "fill": true, "backgroundColor": "rgba(255, 99, 132, 0)", "borderColor": "#FF1A44", "pointBackgroundColor": "rgb(255, 255, 255)", "pointBorderColor": "black", "pointHoverBackgroundColor": "#fff", "pointHoverBorderColor": "rgb(255, 99, 132)" }]')
-    this.data.options = {}
-    this.data.options.scale ={}
-    this.data.options.scale.y = {}
-    this.data.options.scale.y.ticks = {}
-    this.data.options.ticks={}
-    this.data.options.ticks.maxTicksLimit =  1
-  
-
-
-
-
-  }
+    this.data = {};
+    this.data.type = 'radar';
+    this.data.label = 'hits';
+    this.data.data = {};
+    this.data.data.labels = names;
+    this.data.data.links = linksIn;
+    this.data.data.loader = [];
+    this.data.data.datasets = JSON.parse(`[{ "data": [${datas}],  "fill": true, "backgroundColor": "rgba(255, 99, 132, 0)", "borderColor": "#FF1A44", "pointBackgroundColor": "rgb(255, 255, 255)", "pointBorderColor": "black", "pointHoverBackgroundColor": "#fff", "pointHoverBorderColor": "rgb(255, 99, 132)" }]`);
+    this.data.options = {};
+    this.data.options.scale = {};
+    this.data.options.scale.y = {};
+    this.data.options.scale.y.ticks = {};
+    this.data.options.ticks = {};
+    this.data.options.ticks.maxTicksLimit = 1;
+}
 
   displayRadarHits() {
-    console.log(this.data)
+    let i;
+    const loop = [];
+    this.valeur = [];
+    const max = this.data.data.labels.length;
 
-    let i
-    let loop = new Array()
-    this.valeur = new Array()
-    let max = this.data.data.labels.length
+    const positionDeg = [];
+    const ratio = 360 / max;
+    const pos = [];
 
-    let positionDeg = new Array()
-    let ratio = 360 / max
-    let pos = new Array()
+    for (i = 0; i < max; i += 1) {
+      this.valeur[i] = this.data.data.datasets[0].data[i];
 
-    for (i = 0; i < max; i++) {
-      this.valeur[i] = this.data.data.datasets[0].data[i]
-
-      if (this.data.data.labels[i] != '') {
-        this.data.data.loader[i] = this.data.data.labels[i]
+      if (this.data.data.labels[i] !== '') {
+        this.data.data.loader[i] = this.data.data.labels[i];
       } else {
-        this.data.data.labels[i] = this.data.data.loader[i]
+        this.data.data.labels[i] = this.data.data.loader[i];
       }
 
-      this.data.data.labels[i] = ''
+      this.data.data.labels[i] = '';
 
-      positionDeg[i] = ratio * i
+      positionDeg[i] = ratio * i;
 
-      pos[i] = -90 * (i + 1) - positionDeg[i] - 90 * (i + 1) - 90
+      pos[i] = -90 * (i + 1) - positionDeg[i] - 90 * (i + 1) - 90;
 
-      if (i % 2 == 0) {
-        pos[i] = pos[i] + 180
-      } else {
-        null
+      if (i % 2 === 0) {
+        pos[i] = pos[i] + 180;
       }
 
-      if (this.data.data.links[i] != '') {
+      if (this.data.data.links[i] !== '') {
         loop[i] = html`
           <div
             class="label${i + 1} labelindic pos-${i + 1}-${max}"
@@ -353,7 +334,7 @@ export class MvChart extends LitElement {
               </span>
             </a>
           </div>
-        `
+        `;
       } else {
         loop[i] = html`
           <div
@@ -368,11 +349,11 @@ export class MvChart extends LitElement {
               </span>
             </a>
           </div>
-        `
+        `;
       }
     }
-    return loop
+    return loop;
   }
 }
 
-customElements.define('mv-chart-radar', MvChart)
+customElements.define('mv-chart-radar', MvChart);
