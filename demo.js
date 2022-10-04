@@ -1,16 +1,12 @@
-import { LitElement, html, css } from "lit";
-//import "mv-container";
-import "./radarchart/src/js/mv-radar-chart.js";
-import { DATA } from "./radarchart/src/js/data.js";
+import { LitElement, html, css } from 'lit';
 
-
-export class MvChartBubbleDemo extends LitElement {
+import './radarchart/src/js/mv-radar-chart.js';
+import { DATA } from './radarchart/src/js/data.js';
+export default class MvChartBubbleDemo extends LitElement {
   static get properties() {
     return {
       theme: { type: String, attribute: true },
       _data: { type: Object, state: true, reflect: true }
-
-
     };
   }
 
@@ -97,12 +93,8 @@ export class MvChartBubbleDemo extends LitElement {
 
   constructor() {
     super();
-    this.theme = "light";
+    this.theme = 'light';
     this._data = DATA;
-  }
-
-  firstUpdated() {
-
   }
 
   render() {
@@ -137,32 +129,11 @@ export class MvChartBubbleDemo extends LitElement {
     this.theme = value;
   }
 
-  
   getNewVal() {
-
-    let newVal = this.shadowRoot.querySelector('textarea').value
-
-
- 
+    const newVal = this.shadowRoot.querySelector('textarea').value;
 
     this._data = JSON.parse(newVal);
-
-
-
-
-  
-
-
-
-
-
-  }
-
+}
 }
 
-
-
-
-
-
-customElements.define("mv-chart-bubble-demo", MvChartBubbleDemo);
+customElements.define('mv-chart-bubble-demo', MvChartBubbleDemo);
