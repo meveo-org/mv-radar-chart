@@ -224,7 +224,7 @@ export default class MvChart extends LitElement {
 
   render() {
     return html`
-      <div style="transform: scale(1);">
+      <div style="transform: scale(1.1);">
         ${this.convertToChrtJsFormat(this.data)} ${this.displayRadarHits()}
 
         <div class="circle1" style="position:relative;">
