@@ -1,21 +1,38 @@
 import { LitElement, html, css } from 'lit';
-import {
-  Chart,
-  RadarController,
-  ArcElement,
-  RadialLinearScale,
-  PointElement,
-  LineElement,
-} from 'chart.js';
+import { Chart,RadarController,ArcElement,RadialLinearScale, PointElement, LineElement} from 'chart.js';
 import ChartDataLabels from 'chartjs-plugin-datalabels';
 
-Chart.register(
-  RadarController,
-  ArcElement,
-  RadialLinearScale,
-  PointElement,
-  LineElement,
-);
+Chart.register(RadarController,ArcElement,RadialLinearScale,PointElement,LineElement,);
+
+function convertToChrtJsFormat(input) {
+  return {
+    type: 'radar',
+    label: 'hits',
+    data: {
+      labels: input.map((item) => item.name),
+      links: input.map((item) => item.link),
+      loader: [],
+      datasets : [{
+        data: input.map((item) => item.data),
+        fill: true,
+        backgroundColor : 'rgba(255, 99, 132, 0)',
+        borderColor : '#FF1A44',
+        pointBackgroundColor : 'rgb(255, 255, 255)',
+        pointBorderColor : 'black',
+        pointHoverBackgroundColor : '#fff',
+        pointHoverBorderColor : 'rgb(255, 99, 132)'
+      }]},
+    options : {
+      scale : {
+        y:{
+          ticks : {
+          }
+        }
+      },
+      ticks : { maxTicksLimit : 1 }
+    }
+  }
+}
 
 export default class MvChart extends LitElement {
   static get properties() {
@@ -223,9 +240,11 @@ export default class MvChart extends LitElement {
   }
 
   render() {
+    this.data = convertToChrtJsFormat(this.data);
     return html`
       <div style="transform: scale(1.1);">
-        ${this.convertToChrtJsFormat(this.data)} ${this.displayRadarHits()}
+      
+       ${this.displayRadarHits()}
 
         <div class="circle1" style="position:relative;">
           <div class="circle2">
@@ -258,34 +277,7 @@ export default class MvChart extends LitElement {
     this.chart = new Chart(canvas, this.data);
   }
 
-  convertToChrtJsFormat(input) {
-    const linksIn = [];
-    const names = [];
-    const datas = [];
-
-    const obj = input;
-
-    obj.forEach((value) => {
-      names.push(`${value.name}`);
-      datas.push(`${value.data}`);
-      linksIn.push(`${value.link}`);
-    });
-
-    this.data = {};
-    this.data.type = 'radar';
-    this.data.label = 'hits';
-    this.data.data = {};
-    this.data.data.labels = names;
-    this.data.data.links = linksIn;
-    this.data.data.loader = [];
-    this.data.data.datasets = JSON.parse(`[{ "data": [${datas}],  "fill": true, "backgroundColor": "rgba(255, 99, 132, 0)", "borderColor": "#FF1A44", "pointBackgroundColor": "rgb(255, 255, 255)", "pointBorderColor": "black", "pointHoverBackgroundColor": "#fff", "pointHoverBorderColor": "rgb(255, 99, 132)" }]`);
-    this.data.options = {};
-    this.data.options.scale = {};
-    this.data.options.scale.y = {};
-    this.data.options.scale.y.ticks = {};
-    this.data.options.ticks = {};
-    this.data.options.ticks.maxTicksLimit = 1;
-}
+  
 
   displayRadarHits() {
     let i;
